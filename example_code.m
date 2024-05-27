@@ -22,7 +22,7 @@ net_R=squareform(Rs);net_S=squareform(Ss);net_UY=squareform(UYs);net_UZ=squarefo
 [threshold] = modified_percolation_analysis(net_UY);net_UY(net_UY<threshold)=0;
 [threshold] = modified_percolation_analysis(net_UZ);net_UZ(net_UZ<threshold)=0;
 
-[Opt_rank,Vs,Q]=Link_Consensus(net_,1); %identify number of modules usin sparified network
+[Opt_rank,Vs,Q]=Link_Consensus(net_,1); %identify number of modules using sparified network
 
 
 mask=tril(true(size(zeros(size(EMG,2),size(EMG,2)))),-1);
@@ -30,4 +30,4 @@ R_new=net_R(mask);
 S_new=net_S(mask);
 UYZ_new=cat(1,net_UY(mask),UZ(mask)); %include both uy and uz together
 
-[W,H]=opnmf(_new,Opt_rank); %insert sparsified network into dimensionality reduction using derived input parameter, applicable forlarge-scale analyses only
+[W,H]=opnmf(_new,Opt_rank); %insert sparsified network into dimensionality reduction using derived input parameter, applicable for large-scale analyses only
