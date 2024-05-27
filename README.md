@@ -10,4 +10,4 @@ https://github.com/robince/partial-info-decomp \
 https://github.com/robince/gcmi \
 https://github.com/CarloNicolini/communityalg \
 https://github.com/brainlife/BCT \
-https://github.com/asotiras/brainparts \
+https://github.com/asotiras/brainparts
