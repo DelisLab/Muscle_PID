@@ -6,24 +6,11 @@ function [Opt_rank,Vs,Q]=Link_Consensus(X,Type)
         %Requires GenLouvain package to be imported: https://github.com/GenLouvain/GenLouvain
 
 
-norm={};
-for i=1:length(X)
-    
-    A=X{i};
-    %A=communicability_wu(X{i});
-    %A=A-diag(diag(A));
-    norm=cat(2,norm,A);
-    
-%      W = weight_conversion(A, 'normalize');
-%      L=graph_laplacian(W);
-%      laplace=cat(2,laplace,communicability_distance_wu(L));
-    
-end
 
 Vs=[];
-for i=1:length(norm)
+for i=1:length(X)
     try
-        M=link_communities(norm{i},'single');
+        M=link_communities(X{i},'single');
         
         for ii=1:size(M,1)
             Vs=cat(3,Vs,M(ii,:)'.*M(ii,:));
