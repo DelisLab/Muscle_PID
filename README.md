@@ -7,8 +7,8 @@ Alongside these codes, we have provided an example implementation of this framew
 
 To provide intuition and prove the usecase for this approach in recovering the actual functional relationships of muscles, \
 we have provided code for a toy simulation of each interaction type in the 'Stimulation' folder: 
-- toy_simulation is a function to simulate a pair of EMG signals and a corresponding binary task parameter. \
-- The PID_simulation script can be simply ran to provide an output of such a simulation with several adjustable parameters including: \
+- toy_simulation is a function to simulate a pair of EMG signals and a corresponding binary task parameter. 
+- The PID_simulation script can be simply ran to provide an output of such a simulation with several adjustable parameters including: 
     - Muscle interaction type 
     - Noise level 
     - Number of samples 
@@ -16,7 +16,7 @@ we have provided code for a toy simulation of each interaction type in the 'Stim
 
 
 
-The framework can be successfully executed using these codes alone however, credit is given for important features of this code directly adapted from: \
+The framework can be successfully executed using these codes alone however, credit is given for important features of this code directly adapted from: 
 https://github.com/robince/partial-info-decomp \
 https://github.com/robince/gcmi \
 https://github.com/CarloNicolini/communityalg \
