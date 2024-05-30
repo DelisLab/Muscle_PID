@@ -1,5 +1,11 @@
 function [Opt_rank,Vs,Q]=Link_Consensus(X,Type)
 
+%%X is a cell array of adjacency matrices
+%%Type==1 aggregrates the binary matrices generated from link_communities and determines modularity using the Louvain method.
+%%Type==2 applies a multiplex generalisation of the louvain algorithm directly to the set of binary adjacency matrices. 
+        %Requires GenLouvain package to be imported: https://github.com/GenLouvain/GenLouvain
+
+
 norm={};
 for i=1:length(X)
     
