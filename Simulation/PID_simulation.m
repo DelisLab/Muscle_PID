@@ -8,7 +8,7 @@ N=1000; %The number of simulated samples
 noise_level=0.1; %Adjustable level of Gaussian noise
 type='independent'; %Relationship to be simulated between the signals, pick between 'redundant', 'synergistic' and 'independent'
 
-[EMG_1, EMG_2, task_param] = simulate_emg_data(N, noise_level, type);
+[EMG_1, EMG_2, task_param] = toy_simulation(N, noise_level, type);
 
 
 
