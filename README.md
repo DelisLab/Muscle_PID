@@ -16,7 +16,7 @@ we have provided code for a toy simulation of each interaction type in the 'Stim
 
 
 
-The framework can be successfully executed using these codes alone however, credit is given for important features of this code directly adapted from: 
+The framework can be successfully executed using these codes alone however, credit is given for important features of this code directly adapted from: \
 https://github.com/robince/partial-info-decomp \
 https://github.com/robince/gcmi \
 https://github.com/CarloNicolini/communityalg \
