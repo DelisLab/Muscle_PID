@@ -31,3 +31,14 @@ S_new=net_S(mask);
 UYZ_new=cat(1,net_UY(mask),UZ(mask)); %include both uy and uz together
 
 [W,H]=opnmf(_new,Opt_rank); %insert sparsified network into dimensionality reduction using derived input parameter, applicable for large-scale analyses only
+
+%Example demonstration of how to illustrate the output
+A=squareform(W(:,1)); %Configure one of the synergies as an adjacency matrix
+
+[M,Q]=community_louvain(A); %Determine the submodular structure (M) and the Modularity maximising statistic (Q)
+
+Eta=sum(communicability_wu(A)); %Detemine the centrality of each muscle in the network
+
+Ap=threshold_proportional(A,0.1); %For visualisation purposes only, sparsify the network to highlight most prominent connections
+
+plotMuscleNetwork(A,Eta,M); %Plot the network over a human body model note: Eta may need to be multiplied/divided by a factor to make it visually interpretable.]
