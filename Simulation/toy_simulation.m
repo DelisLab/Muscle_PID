@@ -1,4 +1,4 @@
-function [EMG_1, EMG_2, task_param] = simulate_emg_data(N, noise_level, relationship_type)
+function [EMG_1, EMG_2, task_param] = toy_simulation(N, noise_level, relationship_type)
     if nargin < 2
         noise_level = 0.1; % Default noise level
     end
