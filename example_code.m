@@ -1,5 +1,5 @@
 %% Example code for the application of the NIF framework incorporating the PID approach
-%%This code carries out the analysis illustrated in Fig.5 of the paper. To run it, set all folders in this repository on the path
+%%To run this code, set all folders in this repository on the Matlab path
 
 EMG... %insert the EMG data in the shape [No. of Timepoints x No. of Channels]
 Task...%insert the continuous task parameter that corresponds with EMG across time
@@ -38,8 +38,8 @@ A=squareform(W(:,1)); %Configure one of the synergies as an adjacency matrix
 
 [M,Q]=community_louvain(A); %Determine the submodular structure (M) and the Modularity maximising statistic (Q)
 
-Eta=sum(communicability_wu(A)); %Detemine the centrality of each muscle in the network
+Eta=sum(communicability_wu(A)); %Determine the centrality of each muscle in the network
 
 Ap=threshold_proportional(A,0.1); %For visualisation purposes only, sparsify the network to highlight most prominent connections
 
-plotMuscleNetwork(A,Eta,M); %Plot the network over a human body model note: Eta may need to be multiplied/divided by a factor to make it visually interpretable.]
+plotMuscleNetwork(A,Eta,M); %Plot the network over a human body model
