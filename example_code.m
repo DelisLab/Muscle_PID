@@ -5,7 +5,7 @@ EMG... %insert the EMG data in the shape [No. of Timepoints x No. of Channels]
 Task...%insert the continuous task parameter that corresponds with EMG across time
 
 combos=nchoosek(1:size(EMG,2),2); %All pairwise combinations of EMG channels
-Rs=[];Ss=[];UYs=[];Uzs=[]; %Initialise variables to collect information values
+Rs=[];Ss=[];UYs=[];UZs=[]; %Initialise variables to collect information values
 for i=1:length(combos)
     y=EMG(:,combos(i,1));
     z=EMG(:,combos(i,2));
