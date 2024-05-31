@@ -18,7 +18,7 @@ we have provided code for a toy simulation of each interaction type in the 'Simu
     - Muscle interaction type
     - option to include realistic frequency range for simulated EMGs 
     - Noise level 
-    - Number of samples \
+    - Number of samples 
 
 The simulated EMGs are analysed using our approach and significance determined using permutation-testing.
 
