@@ -20,9 +20,7 @@ we have provided code for a toy simulation of each interaction type in the 'Simu
     - Noise level 
     - Number of samples \
 
-The simulated EMGs are tested using our approach and significant interactions are determined using permutation-testing.
-
-
+The simulated EMGs are analysed using our approach and significance determined using permutation-testing.
 
 
 The framework can be successfully executed using these codes alone however, credit is given for important features of this code directly adapted from: \
