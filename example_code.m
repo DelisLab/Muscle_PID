@@ -1,4 +1,5 @@
 %% Example code for the application of the NIF framework incorporating the PID approach
+%%This code carries out the analysis illustrated in Fig.5 of the paper. To run it, set all folders in this repository on the path
 
 EMG... %insert the EMG data in the shape [No. of Timepoints x No. of Channels]
 Task...%insert the continuous task parameter that corresponds with EMG across time
