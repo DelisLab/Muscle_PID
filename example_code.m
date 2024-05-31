@@ -42,4 +42,4 @@ Eta=sum(communicability_wu(A)); %Determine the centrality of each muscle in the 
 
 Ap=threshold_proportional(A,0.1); %For visualisation purposes only, sparsify the network to highlight most prominent connections
 
-plotMuscleNetwork(A,Eta,M); %Plot the network over a human body model
+plotMuscleNetwork(Ap,Eta,M); %Plot the network over a human body model
