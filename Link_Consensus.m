@@ -5,7 +5,11 @@ function [Opt_rank,Vs,Q]=Link_Consensus(X,Type)
 %%Type==2 applies a multiplex generalisation of the louvain algorithm directly to the set of binary adjacency matrices. 
         %Requires GenLouvain package to be imported: https://github.com/GenLouvain/GenLouvain
 
-
+%%Outputs:
+        %Opt_rank: The number of overlapping modules identified that can be used as the input parameter for dimensionality reduction
+        %Vs: A set of binary adjacency matrices describing the link-based community structure of X.
+        %Q: The Q-statistic corresponding to the modularity maximising cost-function.
+        
 
 Vs=[];
 for i=1:length(X)
