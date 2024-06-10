@@ -12,50 +12,49 @@ function [EMG_1, EMG_2, task_param] = simulate_emg_data(N, noise_level, relation
     % Generate a binary task parameter
     y = randi([0, 1], N, 1);
     
-    % Generate synthetic EMG signals
-    synthetic_emg = generate_synthetic_emg(N, frequencies)';
+   
+    synthetic_emg = normalize_emg(generate_synthetic_emg(N, frequencies)');
 
     switch relationship_type
         case 'redundant'
-            EMG_1 = (synthetic_emg + noise_level * randn(N, 1)).* y; % Make two signals that encode the stimuli in a similar way
-            EMG_2 = (synthetic_emg + noise_level * randn(N, 1)).* y; 
-            task_param = double((EMG_2>0 | EMG_1>0 & y==1)); % Generate a conditional relationship
+            EMG_1 = (synthetic_emg.* y)+ (noise_level * randn(N, 1)); % Make two signals that encode the stimuli in a similar way
+            EMG_2 = (synthetic_emg .* y)+ (noise_level * randn(N, 1)); 
+            task_param = y; 
         case 'synergistic'
-            EMG_1 = (synthetic_emg + noise_level * randn(N, 1)).* y; 
-            EMG_2 = (synthetic_emg + noise_level * randn(N, 1)).* (1 - y); % Make EMG_2 the functional complement of EMG_1
-            task_param = double((EMG_2>0 | EMG_1>0 & y==1)); % Generate a conditional relationship
+      
+            EMG_1 = (synthetic_emg.* y)+(noise_level * randn(N, 1)); 
+            EMG_2 = (synthetic_emg.* (1-y))+(noise_level * randn(N, 1)); % Make EMG_2 the functional complement of EMG_1
+            task_param = double(EMG_2>0.5 | EMG_1>0.5 & y==1); % Generate a conditional relationship between muscles and task
           
         case 'independent'
-            EMG_1 = (synthetic_emg + noise_level * randn(N, 1)).* y; %'when My is active in a specific way' (see fig.2 of manuscript)
-            EMG_2 = (synthetic_emg + noise_level * randn(N, 1)).* (1 - y); % Make EMG_2 the complement of EMG_1
-            task_param = double((EMG_2 < EMG_1) & y==1); % Generate a conditional relationship between the muscles and the task
+            y2=randi([0, 1], N, 1);
+            EMG_1 = (synthetic_emg.* y) + (noise_level * randn(N, 1)); % Encode y in EMG_1
+            EMG_2 = (synthetic_emg.*y2) + (noise_level * randn(N, 1)) ;% Different task encoding
+            task_param = y; % Task parameter depends on y not y2
         otherwise
             error('Unknown relationship type. Choose from: redundant, synergistic, or independent.');
     end
 
-    % Normalize EMG signals
-    EMG_1 = normalize_emg(EMG_1);
-    EMG_2 = normalize_emg(EMG_2);
 
-    % Plot the results
-    figure;
-    
-    subplot(1, 2, 1);
-    plot(EMG_1);
-    title([relationship_type, ': EMG 1']);
-    
-    subplot(1, 2, 2);
-    plot(EMG_2);
-    title([relationship_type, ': EMG 2']);
-
-    % Output the simulated signals and task parameter
-    disp('Simulated EMG signals and task parameter:');
-    disp('EMG_1:');
-    disp(EMG_1);
-    disp('EMG_2:');
-    disp(EMG_2);
-    disp('Task parameter:');
-    disp(task_param);
+    % % Plot the results
+    % figure;
+    % 
+    % subplot(1, 2, 1);
+    % plot(EMG_1);
+    % title([relationship_type, ': EMG 1']);
+    % 
+    % subplot(1, 2, 2);
+    % plot(EMG_2);
+    % title([relationship_type, ': EMG 2']);
+    % 
+    % % Output the simulated signals and task parameter
+    % disp('Simulated EMG signals and task parameter:');
+    % disp('EMG_1:');
+    % disp(EMG_1);
+    % disp('EMG_2:');
+    % disp(EMG_2);
+    % disp('Task parameter:');
+    % disp(task_param);
 end
 
 function synthetic_emg = generate_synthetic_emg(N, frequencies)
