@@ -29,8 +29,8 @@ function [EMG_1, EMG_2, task_param] = simulate_emg_data(N, noise_level, relation
         case 'independent'
             y2=randi([0, 1], N, 1);
             EMG_1 = (synthetic_emg.* y) + (noise_level * randn(N, 1)); % Encode y in EMG_1
-            EMG_2 = (synthetic_emg.*y2) + (noise_level * randn(N, 1)) ;% Different task encoding
-            task_param = y; % Task parameter depends on y not y2
+            EMG_2 = (normalize_emg(generate_synthetic_emg(N, frequencies)'))+ (noise_level * randn(N, 1)) ;% Different EMG and task encoding
+            task_param = y; % Task parameter is y
         otherwise
             error('Unknown relationship type. Choose from: redundant, synergistic, or independent.');
     end
