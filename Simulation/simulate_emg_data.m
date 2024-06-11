@@ -37,24 +37,24 @@ function [EMG_1, EMG_2, task_param] = simulate_emg_data(N, noise_level, relation
 
 
     % % Plot the results
-    % figure;
-    % 
-    % subplot(1, 2, 1);
-    % plot(EMG_1);
-    % title([relationship_type, ': EMG 1']);
-    % 
-    % subplot(1, 2, 2);
-    % plot(EMG_2);
-    % title([relationship_type, ': EMG 2']);
-    % 
-    % % Output the simulated signals and task parameter
-    % disp('Simulated EMG signals and task parameter:');
-    % disp('EMG_1:');
-    % disp(EMG_1);
-    % disp('EMG_2:');
-    % disp(EMG_2);
-    % disp('Task parameter:');
-    % disp(task_param);
+    figure;
+
+    subplot(1, 2, 1);
+    plot(EMG_1);
+    title([relationship_type, ': EMG 1']);
+
+    subplot(1, 2, 2);
+    plot(EMG_2);
+    title([relationship_type, ': EMG 2']);
+
+    % Output the simulated signals and task parameter
+    disp('Simulated EMG signals and task parameter:');
+    disp('EMG_1:');
+    disp(EMG_1);
+    disp('EMG_2:');
+    disp(EMG_2);
+    disp('Task parameter:');
+    disp(task_param);
 end
 
 function synthetic_emg = generate_synthetic_emg(N, frequencies)
