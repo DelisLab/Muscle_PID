@@ -3,7 +3,7 @@
 %['task_param']
 
 N=1000; %The number of simulated samples
-%noise_level=3.5; %Adjustable level of Gaussian noise
+noise_level=0.1; %Adjustable level of Gaussian noise
 frequencies=[20:150]; %Select a realistic range of frequencies to effectively simulate EMGs
 type='redundant'; %Relationship to be simulated between the signals, pick between 'redundant', 'synergistic' and 'independent'
 
