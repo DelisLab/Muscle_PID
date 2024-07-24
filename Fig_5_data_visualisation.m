@@ -5,7 +5,7 @@
 
 load('Data.mat');
 EMG=Data.EMG;
-Task=Data.Kinematics; %Combine the kinematics into a single 
+Task=Data.Kinematics;
 
 combos=nchoosek(1:size(EMG,2),2); %All pairwise combinations of EMG channels
 Rs=[];Ss=[];UYs=[];UZs=[]; %Initialise variables to collect information values
@@ -33,10 +33,13 @@ net_R=squareform(Rs_norm);net_S=squareform(Ss_norm);net_UY=squareform(UYs_norm);
 [threshold] = modified_percolation_analysis(net_UY);net_UY(net_UY<threshold)=0;
 [threshold] = modified_percolation_analysis(net_UZ);net_UZ(net_UZ<threshold)=0;
 
+
+
 figure;imagesc(net_R);colorbar;
 figure;imagesc(net_S);colorbar;
 figure;
-uyz=[[UYs_norm;UZs_norm],[combos(:,1);combos(:,2)]];
+mask=tril(true(size(zeros(30,30))),-1);
+uyz=[[net_UY(mask);net_UZ(mask)],[combos(:,1);combos(:,2)]];
 barh(mean(uyz(uyz(:,2)==1,1)));
 hold on;box off;
 for i=2:size(EMG,2)
