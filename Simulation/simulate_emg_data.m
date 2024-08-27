@@ -1,4 +1,4 @@
-function [EMG_1, EMG_2, task_param] = simulate_emg_data(N,noise_correlation, frequencies,trials)
+function [EMG_1, EMG_2, task_param] = simulate_emg_data(N,signal_correlation,noise_correlation, frequencies,trials)
  
    %Simulate two signals across multiple trials
     synthetic_emg_1=[];synthetic_emg_2=[];
@@ -16,7 +16,7 @@ function [EMG_1, EMG_2, task_param] = simulate_emg_data(N,noise_correlation, fre
     sigma = [1 noise_correlation; noise_correlation 1];  % Covariance matrix
     R = chol(sigma);  % Cholesky decomposition
 
-    % Generate the noise
+    % Generate the noise and adjust correlational structure
     noise1 = [];
     noise2 = [];
     for i = 1:trials
@@ -25,32 +25,39 @@ function [EMG_1, EMG_2, task_param] = simulate_emg_data(N,noise_correlation, fre
         noise1 = [noise1;correlatedNoise(:, 1)];
         noise2 = [noise2;correlatedNoise(:, 2)];
     end
+    
+    y1=repmat([repelem(0,N)';repelem(1,N)'],trials);y1=y1(1:N*trials,1);% Generate a binary task parameter
 
-    y=repmat([repelem(0,N)';repelem(1,N)'],trials);y=y(1:N*trials,1);% Generate a binary task parameter
-    EMG_1 = (synthetic_emg_1.* y)+ noise1; % Make two signals that encode this stimulus
-    EMG_2 = (synthetic_emg_2 .* y)+ noise2;
-    task_param = y; % Task parameter is y
+    y2 = zeros(size(y1));%Initalise a second binary task parameter to be simulated with respect to y1 and the specified signal correlation
+    
+    %Values of y2 (i.e. 1 or 0) are determined based on their likelihood
+    %(specified by the signal correlation).
+    for i = 1:length(y1)
+        if signal_correlation > 0
+            % For positive correlation, y2 is more likely to match y1
+            if rand < signal_correlation
+                y2(i) = y1(i);
+            else
+                y2(i) = 1 - y1(i);
+            end
+        elseif signal_correlation < 0
+            % For negative correlation, y2 is more likely to be the inverse of y1
+            if rand < abs(signal_correlation)
+                y2(i) = 1 - y1(i);
+            else
+                y2(i) = y1(i);
+            end
+        else
+            % For zero correlation, generate a random binary sequence for y2
+            y2(i) = rand > 0.5;
+        end
+    end
+
+    EMG_1 = (synthetic_emg_1.* y1)+ noise1; % Encode the stimulus and inject the noise
+    EMG_2 = (synthetic_emg_2 .* y2)+ noise2;
+    task_param = y1; % Task parameter for further analysis is y1
 
 
-    % % % Plot the results
-    % figure;
-    % 
-    % subplot(1, 2, 1);
-    % plot(EMG_1);
-    % title([relationship_type, ': EMG 1']);
-    % 
-    % subplot(1, 2, 2);
-    % plot(EMG_2);
-    % title([relationship_type, ': EMG 2']);
-    % 
-    % % Output the simulated signals and task parameter
-    % disp('Simulated EMG signals and task parameter:');
-    % disp('EMG_1:');
-    % disp(EMG_1);
-    % disp('EMG_2:');
-    % disp(EMG_2);
-    % disp('Task parameter:');
-    % disp(task_param);
 end
 
 function synthetic_emg = generate_synthetic_emg(N, frequencies)
