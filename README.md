@@ -14,9 +14,9 @@ Alongside these codes, we have provided an example implementation of this framew
 To provide intuition for this approach and how it recovers the functional relationships between muscle pairs, \
 we have provided code for a toy simulation (see 'Simulation' folder): 
 - simulate_emg_data is a function to simulate a pair of EMG signals (EMG_1, EMG_2) with a common task encoding (task_param). 
-- The PID_simulation script can be simply ran to provide the output of the simulation illustrated in fig.2(b) of the manuscript and includes the following adjustable parameters: 
+- The PID_simulation script can be simply ran to provide the output of the simulation illustrated in fig.2(b.1-2) of the manuscript and includes the following adjustable parameters: 
     - frequency range for simulated EMGs
-    - Noise correlation level
+    - Signal and Noise correlation level
     - Number of samples
     - Number of trials
 
