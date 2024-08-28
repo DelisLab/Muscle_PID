@@ -89,14 +89,14 @@ for scorr=-1:0.1:1
         noise_correlation=ncorr;
         for K=1:100 %simulate K fold simulations of the EMG signals
             [EMG_1, EMG_2, task_param] = simulate_emg_data(N,signal_correlation, noise_correlation, frequencies,trials);
-            [R1,S1,UY1,UZ1] =Gaussian_PID(EMG_1,EMG_2,task_param);%Apply PID to the simulated signals with respect to the simulated task parameter
+            [R,S,UY,UZ] =Gaussian_PID(EMG_1,EMG_2,task_param);%Apply PID to the simulated signals with respect to the simulated task parameter
             %Normalise the derived quantities to determine their relative
             %contributions to the total shared information (i.e. the joint mutual information (JMI))
-            JMI1=sum([R1,S1,UY1,UZ1]);
-            r=[r;[R1/JMI1]];
-            s=[s;[S1/JMI1]];
-            uy=[uy;[UY1/JMI1]];
-            uz=[uz;[UZ1/JMI1]];
+            JMI=sum([R,S,UY,UZ]);
+            r=[r;[R1/JMI]];
+            s=[s;[S1/JMI]];
+            uy=[uy;[UY1/JMI]];
+            uz=[uz;[UZ1/JMI]];
         end
         %Extract the average of each quantity to summarise the output at each
         %correlation level
@@ -157,5 +157,6 @@ xticklabels(-1:0.1:1);
 title('Unique');
 xlabel('Signal correlation');
 colorbar;
+
 
 
