@@ -8,13 +8,9 @@ x=copnorm(X);
 y=copnorm(Y);
 z=copnorm(Z);
 
-% Ntrl = size(X,1);
-% vs=[1 1 1];
-% xyz = [Y Z X];
-% Cxyz = (xyz'*xyz) / (Ntrl - 1);
 
 Ntrl = size(x,1);
-vs=[1 1 1];
+vs=[size(y,2),size(z,2),size(x,2)];
 xyz = [y z x];
 Cxyz = (xyz'*xyz) / (Ntrl - 1);
 
