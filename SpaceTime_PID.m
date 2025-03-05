@@ -6,6 +6,8 @@ function [R_spacetime,S_spacetime,UYZ_spacetime,net_R_space,net_S_space,net_UYZ_
         %EEG: Tensor [No. of timepoints x No. of channels x No. of trials]
         %TASK: Tensor [No. of timepoints x No. of parameters x No. of trials]
 
+        %Note: No. of timepoints and No. of trials must be the same across all inputs
+
 %%Output
         %R_spacetime,S_spacetime,UYZ_spacetime = Final output matrix for dimensionality reduction
         %net_R_space,net_S_space,net_UYZ_space = Spatial networks for community detection
