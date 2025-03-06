@@ -1,4 +1,4 @@
-function [R_spacetime,S_spacetime,UYZ_spacetime,net_R_space,net_S_space,net_UYZ_space,net_R_time,net_S_time,net_UYZ_time] = SpaceTime_PID(EMG,EEG,TASK)
+function [R_spacetime,S_spacetime,UYZ_spacetime,net_R_space,net_S_space,net_UYZ_space,net_R_time,net_S_time,net_UYZ_time] = SpaceTime_EEGEMG_PID(EMG,EEG,TASK)
 
 
 %%Input:
