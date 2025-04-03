@@ -75,22 +75,22 @@ mask=tril(true(size(zeros(size(EMG,1),size(EMG,1)))),-1);
 for c=1:size(TASK,2)
     for ii=1:length(combos_s)
     
-        A=squareform(R(ii,1:length(combos_t)-size(EMG,1),s,c))+diag(squareform(R(ii,[length(combos_t)-size(EMG,1)]+1:end,s,c)));
+        A=squareform(R(ii,1:length(combos_t)-size(EMG,1)))+diag(R(ii,[length(combos_t)-size(EMG,1)]+1:end));
         [threshold] = modified_percolation_analysis(A);A(A<threshold)=0;
         net_R_time=cat(2,net_R_time,A);
         R_time=cat(2,R_time,[A(mask);diag(A)]);
 
-        A=squareform(S(ii,1:length(combos_t)-size(EMG,1),s,c))+diag(squareform(S(ii,[length(combos_t)-size(EMG,1)]+1:end,s,c)));
+        A=squareform(S(ii,1:length(combos_t)-size(EMG,1)))+diag(S(ii,[length(combos_t)-size(EMG,1)]+1:end));
         [threshold] = modified_percolation_analysis(A);A(A<threshold)=0;
         net_S_time=cat(2,net_S_time,A);
         S_time=cat(2,S_time,[A(mask);diag(A)]);
 
-        A=squareform(UY(ii,1:length(combos_t)-size(EMG,1),s,c))+diag(squareform(UY(ii,[length(combos_t)-size(EMG,1)]+1:end,s,c)));
+        A=squareform(UY(ii,1:length(combos_t)-size(EMG,1)))+diag(UY(ii,[length(combos_t)-size(EMG,1)]+1:end));
         [threshold] = modified_percolation_analysis(A);A(A<threshold)=0;
         net_UYZ_time=cat(2,net_UYZ_time,A);
         UY_time=cat(2,UY_time,[A(mask);diag(A)]);
 
-        A=squareform(UZ(ii,1:length(combos_t)-size(EMG,1),s,c))+diag(squareform(UZ(ii,[length(combos_t)-size(EMG,1)]+1:end,s,c)));
+        A=squareform(UZ(ii,1:length(combos_t)-size(EMG,1)))+diag(UZ(ii,[length(combos_t)-size(EMG,1)]+1:end));
         [threshold] = modified_percolation_analysis(A);A(A<threshold)=0;
         net_UYZ_time=cat(2,net_UYZ_time,A);
         UZ_time=cat(2,UZ_time,[A(mask);diag(A)]);
@@ -101,10 +101,10 @@ S_time=reshape(S_time,[length(combos_t),length(combos_s),size(TASK,2)]);
 UY_time=reshape(UY_time,[length(combos_t),length(combos_s),size(TASK,2)]);
 UZ_time=reshape(UZ_time,[length(combos_t),length(combos_s),size(TASK,2)]);
 
-R_spacetime=zeros([length(combos_t),length(combos_s),size(TASK,2),size(EEG,2)]);
-S_spacetime=zeros([length(combos_t),length(combos_s),size(TASK,2),size(EEG,2)]);
-UY_spacetime=zeros([length(combos_t),length(combos_s),size(TASK,2),size(EEG,2)]);
-UZ_spacetime=zeros([length(combos_t),length(combos_s),size(TASK,2),size(EEG,2)]);
+R_spacetime=zeros([length(combos_t),length(combos_s),size(TASK,2)]);
+S_spacetime=zeros([length(combos_t),length(combos_s),size(TASK,2)]);
+UY_spacetime=zeros([length(combos_t),length(combos_s),size(TASK,2)]);
+UZ_spacetime=zeros([length(combos_t),length(combos_s),size(TASK,2)]);
 for c=1:size(TASK,2)
     for i=1:length(combos_s)
         for ii=1:length(combos_t)
