@@ -19,7 +19,7 @@ for i=1:length(combos_s)
     for ii=1:length(combos_t)
         for c=1:size(TASK,2)
 
-            emg_x=EMG(combos_t(ii,2),combos_s(ii,1),:);emg_y=EMG(combos_t(ii,2),combos_s(ii,2),:);
+            emg_x=EMG(combos_t(ii,1),combos_s(i,1),:);emg_y=EMG(combos_t(ii,2),combos_s(i,2),:);
            
             task=TASK(combos_t(ii,2),c,:);task=task(:);
 
