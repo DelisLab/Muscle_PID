@@ -1,7 +1,7 @@
 This repository provides Matlab code to implement the computational framework described in:
 
 Quantifying the diverse contributions of hierarchical muscle interactions to motor function
-(https://www.biorxiv.org/content/10.1101/2023.11.30.569159v2)
+(https://doi.org/10.1016/j.isci.2024.111613)
 
 The the main scripts to implement the framework include: \
 Gaussian_PID.m = Calculates Partial information decomposition following a gaussian copula normalisation [1,2]. \
